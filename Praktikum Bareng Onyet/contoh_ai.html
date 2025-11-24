@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zona Ibu & Anak</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .slider {
+    display: flex;
+    transition: transform 0.8s ease-in-out;
+    width: 400vw; /* 4 halaman */
+  }
+
+  .page {
+    flex: 0 0 100vw;
+    height: 100vh;
+    padding: 80px 60px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .page:nth-child(1) { background: linear-gradient(180deg,#ffd6e0,#fff3f5); }
+  .page:nth-child(2) { background: linear-gradient(180deg,#fff1c9,#fff7e6); }
+  .page:nth-child(3) { background: linear-gradient(180deg,#c9ffe0,#e6fff2); }
+  .page:nth-child(4) { background: linear-gradient(180deg,#cde3ff,#e8f0ff); }
+
+  .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .content {
+    max-width: 700px;
+    text-align: center;
+    color: #444;
+    line-height: 1.7;
+  }
+
+  /* navigasi kanan atas */
+  .nav-menu {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(6px);
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  }
+
+  .nav-menu button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #444;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .nav-menu button.active {
+    color: #fff;
+    background: #ff7ca8;
+    border-radius: 20px;
+    padding: 6px 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .nav-menu button:hover {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 600px) {
+    .nav-menu {
+      top: 10px;
+      right: 10px;
+      gap: 10px;
+      padding: 6px 10px;
+    }
+    .nav-menu button {
+      font-size: 0.8rem;
+    }
+    .title {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="nav-menu" id="menu">
+    <button onclick="goToPage(0)" class="active">Kehamilan</button>
+    <button onclick="goToPage(1)">Persalinan</button>
+    <button onclick="goToPage(2)">Tumbuh Kembang</button>
+    <button onclick="goToPage(3)">Gizi</button>
+  </div>
+
+  <div class="slider" id="slider">
+
+    <section class="page">
+      <h1 class="title">Zona Kehamilan</h1>
+      <div class="content">
+        <p>Halaman ini berisi informasi tentang usia kehamilan, HPL, perkembangan janin, dan tips untuk ibu hamil.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet voluptatem magni amet laboriosam!</p>
+        <p>Scroll ke bawah untuk menambah konten kehamilan lainnya.</p>
+      </div>
+    </section>
+
+    <section class="page">
+      <h1 class="title">Zona Persalinan</h1>
+      <div class="content">
+        <p>Informasi tanda-tanda melahirkan, kontraksi timer, dan panduan perawatan sebelum dan sesudah persalinan.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, neque?</p>
+      </div>
+    </section>
+
+    <section class="page">
+      <h1 class="title">Tumbuh Kembang Anak</h1>
+      <div class="content">
+        <p>Pantau tinggi, berat, dan perkembangan anak secara berkala. Dapatkan informasi vaksin dan nutrisi.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, iste?</p>
+      </div>
+    </section>
+
+    <section class="page">
+      <h1 class="title">Kesehatan & Gizi</h1>
+      <div class="content">
+        <p>Panduan makanan sehat, dosis obat aman, serta tips P3K untuk anak dan ibu.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, vel?</p>
+      </div>
+    </section>
+
+  </div>
+
+<script>
+  const slider = document.getElementById("slider");
+  const buttons = document.querySelectorAll(".nav-menu button");
+  let currentPage = 0;
+
+  function goToPage(pageIndex) {
+    currentPage = pageIndex;
+    slider.style.transform = `translateX(-${pageIndex * 100}vw)`;
+    updateActive();
+  }
+
+  function updateActive() {
+    buttons.forEach((btn, i) => {
+      btn.classList.toggle("active", i === currentPage);
+    });
+  }
+</script>
+
+</body>
+</html>
